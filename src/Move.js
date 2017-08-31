@@ -22,6 +22,7 @@ class Move extends Trait
 
         this._diff = new Vector2();
         this.aim = new Vector2();
+        this.heading = new Vector2();
         this.speed = 100;
     }
 
@@ -31,6 +32,10 @@ class Move extends Trait
         }
         copy(this._diff, this.aim).setLength(this.speed * deltaTime);
         add(this._host.position, this._diff);
+
+        if (this.aim.lengthSq()) {
+            this.heading.copy(this.aim);
+        }
     }
 }
 
